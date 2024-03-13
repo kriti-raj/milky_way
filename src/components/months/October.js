@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "../Navbar";
 
-const January = () => {
+const October = () => {
   return (
     <div className="bg-month-col min-h-[100vh]">
       <Navbar />
       <h1 className="flex justify-center pt-12 text-white text-4xl ">
-        January
+        October
       </h1>
       <div className="m-2 grid gap-6 pt-12 sm:grid-cols-12">
         <div className="min-h-[600px] rounded bg-grid-col shadow-xl sm:col-span-8">
@@ -36,4 +36,4 @@ const January = () => {
   );
 };
 
-export default January;
+export default October;

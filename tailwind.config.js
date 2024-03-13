@@ -9,10 +9,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "regal-blue": "#243c5a",
-        "muthu-col": "#0d1117",
-        "kriti-col": "#0d1117",
-        "vikku-col": "#17324e",
+        "grid-col": "#0d1117",
+        "month-col": "#17324e",
+        "home-col": "#1e1e1e",
+        "rules-col": "#dbeafe",
       },
     },
   },

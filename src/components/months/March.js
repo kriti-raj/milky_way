@@ -3,11 +3,11 @@ import Navbar from "../Navbar";
 
 const March = () => {
   return (
-    <div className="bg-vikku-col min-h-[100vh]">
+    <div className="bg-month-col min-h-[100vh]">
       <Navbar />
-      <h1 className="text-white pt-12">March</h1>
-      <div className="m-4 grid gap-6 pt-12 sm:grid-cols-12">
-        <div className="min-h-[600px] rounded bg-muthu-col shadow-xl sm:col-span-8">
+      <h1 className="flex justify-center pt-12 text-white text-4xl ">March</h1>
+      <div className="m-2 grid gap-6 pt-12 sm:grid-cols-12">
+        <div className="min-h-[600px] rounded bg-grid-col shadow-xl sm:col-span-8">
           <p className="flex text-justify-center text-white">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -18,7 +18,7 @@ const March = () => {
             culpa qui officia deserunt mollit anim id est laborum.
           </p>
         </div>
-        <div className="min-h-[600px] rounded bg-kriti-col shadow-xl sm:col-span-4 ">
+        <div className="min-h-[600px] rounded bg-grid-col shadow-xl sm:col-span-4 ">
           <p className="flex text-justify-center text-white">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim

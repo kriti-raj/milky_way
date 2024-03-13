@@ -11,9 +11,9 @@ import June from "./components/months/June";
 import July from "./components/months/July";
 import August from "./components/months/August";
 import September from "./components/months/September";
-import October from "./components/October";
-import November from "./components/November";
-import December from "./components/December";
+import October from "./components/months/October";
+import November from "./components/months/November";
+import December from "./components/months/December";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -61,14 +61,14 @@ export default function App() {
       path: "/oct",
       element: <October />,
     },
-    // {
-    //   path: "/nov",
-    //   element: <November />,
-    // },
-    // {
-    //   path: "/dec",
-    //   element: <December />,
-    // },
+    {
+      path: "/nov",
+      element: <November />,
+    },
+    {
+      path: "/dec",
+      element: <December />,
+    },
   ]);
 
   return <RouterProvider router={router} />;
