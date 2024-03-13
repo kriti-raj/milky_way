@@ -5,7 +5,8 @@ const January = () => {
   return (
     <div className="bg-vikku-col min-h-[100vh]">
       <Navbar />
-      <div className="m-4 grid gap-6 pt-24 sm:grid-cols-12">
+      <h1 className="text-white pt-12">January</h1>
+      <div className="m-4 grid gap-6 pt-12 sm:grid-cols-12">
         <div className="min-h-[600px] rounded bg-muthu-col shadow-xl sm:col-span-8">
           <p className="flex text-justify-center text-white">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
