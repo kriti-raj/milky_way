@@ -12,7 +12,8 @@ const Home = () => {
       <div className="flex justify-center pt-12">
         <img src={Doodh} className="border-8 border-red-500 rounded-lg"></img>
       </div>
-      <div className="m-2 grid gap-6 pt-12 sm:grid-cols-12">
+      <div className="m-2 grid gap-6 pt-12 sm:grid-cols-12 ">
+        
         <div className="min-h-[300px] rounded bg-grid-col shadow-xl sm:col-span-9">
           <div class="flex justify-start text-white ps-2">
             Rules:{/* <span class="bg-blue-300">Rules:</span> */}

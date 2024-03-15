@@ -1,32 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../Navbar";
+import Calendar from "../Calender";
 
 const April = () => {
+  const [greenMarkCount, setGreenMarkCount] = useState(0);
+
+  const handleGreenMarkChange = (count) => {
+    setGreenMarkCount(count);
+  };
+
   return (
     <div className="bg-month-col min-h-[100vh]">
       <Navbar />
-      <h1 className="flex justify-center pt-12 text-white text-4xl ">April</h1>
+      <h1 className="flex justify-center pt-12 text-white text-4xl">April</h1>
       <div className="m-2 grid gap-6 pt-12 sm:grid-cols-12">
         <div className="min-h-[600px] rounded bg-grid-col shadow-xl sm:col-span-8">
-          <p className="flex text-justify-center text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+          <Calendar onGreenMarkChange={handleGreenMarkChange} />
         </div>
-        <div className="min-h-[600px] rounded bg-grid-col shadow-xl sm:col-span-4 ">
-          <p className="flex text-justify-center text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+        <div className="min-h-[600px] rounded bg-grid-col shadow-xl sm:col-span-4">
+          <div className="pt-64"></div>
+          <p className="flex items-center justify-center ps-18 text-white border-4 border-lime-500 px-4 py-2">
+            Amount =
+            <input
+              className="ml-2 w-16 px-2 py-1 text-black rounded-md"
+              placeholder="_"
+              type="number"
+              min="0"
+              max="1500"
+              step="1"
+              pattern="^\d+(?:\.\d{1,2})?$"
+              value={greenMarkCount * 18}
+              required
+            />
+            / 1500
           </p>
         </div>
       </div>
