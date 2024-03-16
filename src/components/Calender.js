@@ -1,8 +1,22 @@
 import React, { useState, useEffect } from "react";
 
 const Calendar = ({ onGreenMarkChange }) => {
-  const [dates, setDates] = useState(new Array(31).fill(""));
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [dateStates, setDateStates] = useState(new Array(31 * 12).fill(""));
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -12,76 +26,68 @@ const Calendar = ({ onGreenMarkChange }) => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleDateClick = (index) => {
-    const newDates = [...dates];
-    const clickedDate = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      index + 1
-    );
+  const handleDateClick = (month, date) => {
+    const clickedDate = new Date(currentDate.getFullYear(), month, date);
+    const index = month * 31 + date - 1;
+
+    const newDateStates = [...dateStates];
 
     if (
       clickedDate.getDate() === currentDate.getDate() &&
       clickedDate.getMonth() === currentDate.getMonth() &&
       clickedDate.getFullYear() === currentDate.getFullYear()
     ) {
-      if (newDates[index] === "") {
-        newDates[index] = "bg-green-500";
-      } else if (newDates[index] === "bg-green-500") {
-        newDates[index] = "bg-red-500";
+      if (newDateStates[index] === "") {
+        newDateStates[index] = "bg-green-500 text-white";
+      } else if (newDateStates[index] === "bg-green-500 text-white") {
+        newDateStates[index] = "bg-red-500 text-white";
       } else {
-        newDates[index] = "";
+        newDateStates[index] = "";
+      }
+    } else {
+      if (newDateStates[index] === "") {
+        newDateStates[index] = "bg-blue-500 text-white";
+      } else {
+        newDateStates[index] = "";
       }
     }
 
-    setDates(newDates);
-    const greenMarkCount = newDates.filter((date) => date === "bg-green-500").length;
-    onGreenMarkChange(greenMarkCount);
+    setDateStates(newDateStates);
+  };
+
+  const getDaysInMonth = (month, year) => {
+    return new Date(year, month + 1, 0).getDate();
   };
 
   return (
-    <div className="flex justify-center p-8 pt-36">
-      <div className="grid grid-cols-7 gap-4 w-96 h-72 rounded-md bg-gray-600">
-        {dates.map((date, index) => (
-          <button
-            key={index}
-            onClick={() => handleDateClick(index)}
-            className={`w-10 h-10 text-xl rounded-full border-2 border-grid-col ${date}`}
-            style={{
-              color: date === "bg-green-500" ? "white" : "black",
-              backgroundColor:
-                date === "bg-green-500"
-                  ? "#00a300"
-                  : date === "bg-red-500"
-                  ? "#e74c3c"
-                  : "#48b2ea",
-              cursor:
-                new Date(
-                  currentDate.getFullYear(),
-                  currentDate.getMonth(),
-                  index + 1
-                ).getDate() === currentDate.getDate()
-                  ? "pointer"
-                  : "default",
-              opacity:
-                new Date(
-                  currentDate.getFullYear(),
-                  currentDate.getMonth(),
-                  index + 1
-                ).getDate() === currentDate.getDate()
-                  ? 1
-                  : 0.5,
-            }}
-            disabled={
-              new Date(
-                currentDate.getFullYear(),
-                currentDate.getMonth(),
-                index + 1
-              ).getDate() !== currentDate.getDate()
-            }
-          >
-            {index + 1}
-          </button>
+    <div className="flex flex-col p-8 pt-24 justify-center">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+        {months.map((month, index) => (
+          <div key={index} className="bg-calendar-col rounded-md p-4">
+            <h2 className="text-sm md:text-base lg:text-lg font-bold mb-2 text-white">
+              {month}
+            </h2>
+            <div className="grid grid-cols-7 gap-1 text-white">
+              {Array.from(
+                { length: getDaysInMonth(index, currentDate.getFullYear()) },
+                (_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => handleDateClick(index, i + 1)}
+                    className={`w-6 h-6 sm:w-8 sm:h-8 text-xs sm:text-sm rounded-full border-1 border-grid-col ${
+                      dateStates[index * 31 + i]
+                    }`}
+                    style={{
+                      cursor: "pointer",
+                      opacity: 1,
+                    }}
+                  >
+                    {i + 1}
+                  </button>
+                )
+              )}
+            </div>
+          </div>
         ))}
       </div>
     </div>

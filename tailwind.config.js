@@ -11,6 +11,7 @@ module.exports = {
       colors: {
         "grid-col": "#0d1117",
         "month-col": "#17324e",
+        "calendar-col": "#26282b",
         "home-col": "#1e1e1e",
         "rules-col": "#dbeafe",
       },
