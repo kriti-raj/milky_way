@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Calendar = ({ onGreenMarkChange }) => {
+const Calendar = () => {
   const months = [
     "January",
     "February",
@@ -59,8 +59,34 @@ const Calendar = ({ onGreenMarkChange }) => {
     return new Date(year, month + 1, 0).getDate();
   };
 
+  const renderDateButton = (month, date) => {
+    const index = month * 31 + date - 1;
+    const isCurrentDate =
+      date === currentDate.getDate() &&
+      month === currentDate.getMonth() &&
+      currentDate.getFullYear() === currentDate.getFullYear();
+    const dateState = dateStates[index];
+    const buttonClass = `w-6 h-6 sm:w-8 sm:h-8 text-xs sm:text-sm rounded-full border-1 border-grid-col ${dateState || (isCurrentDate ? "bg-green-500 text-white" : "")
+      }`;
+
+    return (
+      <button
+        key={`${month}-${date}`}
+        onClick={() => handleDateClick(month, date)}
+        className={`transition-all duration-200 ${buttonClass}`}
+        style={{
+          cursor: "pointer",
+          opacity: 1,
+        }}
+        aria-label={`${months[month]} ${date}, ${currentDate.getFullYear()}`}
+      >
+        {date}
+      </button>
+    );
+  };
+
   return (
-    <div className="flex flex-col p-8 pt-24 justify-center">
+    <div className="flex flex-col p-8 pt-2 justify-center">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
         {months.map((month, index) => (
           <div key={index} className="bg-calendar-col rounded-md p-4">
@@ -70,21 +96,7 @@ const Calendar = ({ onGreenMarkChange }) => {
             <div className="grid grid-cols-7 gap-1 text-white">
               {Array.from(
                 { length: getDaysInMonth(index, currentDate.getFullYear()) },
-                (_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => handleDateClick(index, i + 1)}
-                    className={`w-6 h-6 sm:w-8 sm:h-8 text-xs sm:text-sm rounded-full border-1 border-grid-col ${
-                      dateStates[index * 31 + i]
-                    }`}
-                    style={{
-                      cursor: "pointer",
-                      opacity: 1,
-                    }}
-                  >
-                    {i + 1}
-                  </button>
-                )
+                (_, i) => renderDateButton(index, i + 1)
               )}
             </div>
           </div>
